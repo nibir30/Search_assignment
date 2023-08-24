@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:test_flutter/features/favorite/domain/entity/get_profile_data_entity.dart';
 import 'package:test_flutter/features/favorite/presentation/bloc/search_bloc.dart';
+import 'package:test_flutter/providers/fav_provider.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
@@ -28,6 +30,8 @@ class _FavoritePageState extends State<FavoritePage> {
 
   @override
   Widget build(BuildContext context) {
+    FavoriteProvider addressProvider = Provider.of<FavoriteProvider>(context);
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
@@ -197,6 +201,11 @@ class _FavoritePageState extends State<FavoritePage> {
                                                         setState(() {
                                                           state.profileResponseEntity.lists![index].isfavorite =
                                                               !state.profileResponseEntity.lists![index].isfavorite!;
+                                                          if (state.profileResponseEntity.lists![index].isfavorite == true) {
+                                                            addressProvider.addFavorite(state.profileResponseEntity.lists![index]);
+                                                          } else {
+                                                            addressProvider.deleteFavorite(state.profileResponseEntity.lists![index]);
+                                                          }
                                                         });
                                                       },
                                                       child: state.profileResponseEntity.lists![index].isfavorite == false

@@ -8,12 +8,14 @@ part 'user_data_model.g.dart';
 
 @JsonSerializable()
 class UserDataModel {
+  String? id;
   String? title;
   String? description;
   SharedModel? share;
   OwnerModel? owner;
 
   UserDataModel(
+    this.id,
     this.title,
     this.description,
     this.share,
@@ -27,6 +29,7 @@ class UserDataModel {
 
   UserDataEntity toEntity() {
     return UserDataEntity(
+      id,
       title,
       description,
       share!.toEntity(),

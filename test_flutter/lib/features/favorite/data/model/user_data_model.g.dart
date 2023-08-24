@@ -8,19 +8,16 @@ part of 'user_data_model.dart';
 
 UserDataModel _$UserDataModelFromJson(Map<String, dynamic> json) {
   return UserDataModel(
+    json['id'] as String?,
     json['title'] as String?,
     json['description'] as String?,
-    json['share'] == null
-        ? null
-        : SharedModel.fromJson(json['share'] as Map<String, dynamic>),
-    json['owner'] == null
-        ? null
-        : OwnerModel.fromJson(json['owner'] as Map<String, dynamic>),
+    json['share'] == null ? null : SharedModel.fromJson(json['share'] as Map<String, dynamic>),
+    json['owner'] == null ? null : OwnerModel.fromJson(json['owner'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$UserDataModelToJson(UserDataModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UserDataModelToJson(UserDataModel instance) => <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'description': instance.description,
       'share': instance.share,

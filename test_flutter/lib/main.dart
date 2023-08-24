@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter/router/route_generator.dart';
 
+import 'providers/fav_provider.dart';
 import 'router/routing_variables.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
