@@ -152,6 +152,7 @@ class _HomePageState extends State<HomePage> {
                     ),
               InkWell(
                 onTap: () {
+                  addressProvider.clearFavorites();
                   Navigator.pushNamed(context, Navigation.favoritePage);
                 },
                 child: Container(
